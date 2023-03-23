@@ -1,0 +1,19 @@
+doctype html
+html
+	head
+		title TPC5 - To Do List
+		link(rel='stylesheet', href='https://www.w3schools.com/w3css/4/w3.css')
+		script.
+			function openForm(evt, formName) {
+				var i;
+			 	var x = document.getElementsByClassName("form");
+				for (i = 0; i < x.length; i++) 
+					x[i].style.display = "none";
+				var tablinks = document.getElementsByClassName("tablink");
+				for (i = 0; i < x.length; i++) 
+					tablinks[i].className = tablinks[i].className.replace(" w3-deep-purple", "");
+				document.getElementById(formName).style.display = "block";
+			 	evt.currentTarget.className += " w3-deep-purple";
+			}
+	body
+		block content

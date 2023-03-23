@@ -1,0 +1,76 @@
+extends layout
+
+block content
+	.w4-border-bottom
+		header.w3-container.w3-deep-purple
+			h3 Add Form
+		.w3-bar.w3-white.w3-border-bottom
+	
+		
+		form.w3-container.w3-round.w3-border.w3-margin.form(id="task" method="POST" style="display:Block")
+			if t==null
+				label.w3-text-deep-purple Task ID
+				input.w3-input(type="text" name="id" value="t"+tasks.length readonly)
+				
+				label.w3-text-deep-purple Due Date
+				input.w3-input(name="dueDate" type="date")
+				
+				label.w3-text-deep-purple Who is going to do it
+				input.w3-input(name="author" type="text")
+				
+				label.w3-text-deep-purple Task Description
+				input.w3-input(name="description" type="text")
+			else
+				label.w3-text-deep-purple Task ID
+				input.w3-input(type="text" name="id" value=t.id readonly)
+				
+				label.w3-text-deep-purple Due Date
+				input.w3-input(name="dueDate" type="date" value=t.dueDate)
+				
+				label.w3-text-deep-purple Who is going to do it
+				input.w3-input(name="author" type="text" value=t.author)
+				
+				label.w3-text-deep-purple Task Description
+				input.w3-input(name="description" type="text" value=t.description)
+			button.w3-btn.w3-deep-purple.w3-round.w3-margin.w3-mb-2(type="submit") Register
+			
+	.w3-row(style="height:60vh")
+		.w3-half.w3-border-right(style="height:60vh;overflow-y: hidden;")
+			.w3-container.w3-deep-purple
+				h3 Due Tasks
+			table.w3-table-all(style="overflow-y: scroll")
+					tr
+						th ID
+						th Author
+						th Due Date
+						th Description
+						th Actions
+					each task in tasks
+						if task.state == "due"
+							tr
+								td= task.id
+								td= task.author
+								td= task.dueDate
+								td= task.description
+								td
+									a(href="http://localhost:7777/edit/"+task.id) [Edit]
+									
+									a(href="http://localhost:7777/markdone/"+task.id) [Mark as Done]
+		.w3-half.w3-border-left(style="height:60vh;overflow-y: hidden;")
+			.w3-container.w3-deep-purple
+				h3 Done Tasks
+			table.w3-table-all(style="overflow-y: scroll")
+					tr
+						th ID
+						th Author
+						th Due Date
+						th Description
+					each task in tasks
+						if task.state == "done"
+							tr
+								td= task.id
+								td= task.author
+								td= task.dueDate
+								td= task.description
+	footer.w3-container.w3-deep-purple
+		p By João Novais a96626
